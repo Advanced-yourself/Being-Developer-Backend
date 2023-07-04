@@ -1,7 +1,6 @@
 // const mongoose = require("mongoose");
 
-const uri =
-  "mongodb+srv://anurag:Anurag123@being-developer.dtzod5p.mongodb.net/";
+const MONGO_URL = process.env.MONGO_URL
 // const connectDB = () => {
 //   return mongoose.connect(uri, ()=>{
 //     console.log("Connected");
@@ -16,7 +15,7 @@ mongoose.set("strictQuery", true);
 
 const connectDB = () => {
   mongoose
-    .connect(uri, {})
+    .connect(MONGO_URL, {})
     .then(() => {
       console.log("Connected to Mongo successful");
     })

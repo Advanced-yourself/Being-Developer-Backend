@@ -1,22 +1,22 @@
-// console.log("Hello js");
 
-const connectDB = require("./db")
-connectDB();
-
-
-
-const express = require('express')
+const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
-const app = express()
-const port = 5000
+const connectDB = require("./db")
+const app = express();
+const PORT = process.env.PORT;
+const userRouter = require("./routes/auth");
+const notesRouter = require("./routes/notes");
+
 
 //using middleware
 app.use(express.json());
 
-app.use('/api/auth', require('./routes/auth'))
-app.use('/api/notes', require('./routes/notes'));
+app.use('/api/auth', userRouter)
+app.use('/api/notes', notesRouter);
 
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`Example app listening at http://localhost:${PORT}`)
 })
