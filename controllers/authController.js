@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 // const fetchuser = require("../middleware/fetchuser");
 
 // Here we will we pass the registration data which will store in mpongoDB schema
+
 const registerUser = async (req, res) => {
   const { name, email, password, password_confirmation } = req.body; //req.body means someone sending some data from frontend through form
 
@@ -55,6 +56,7 @@ const registerUser = async (req, res) => {
     }
   }
 };
+
 
 const loginUser = async (req, res) => {
   try {
