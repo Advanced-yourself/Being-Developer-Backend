@@ -1,9 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
-const { Schema } = mongoose;
 const NotesModel = require("../models/Notes");
-const checkUserAuth = require("../middleware/auth-middleware");
 
 const addNotes = async (req, res) => {
   try {

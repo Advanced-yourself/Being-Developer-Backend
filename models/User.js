@@ -17,10 +17,25 @@ const userSchema = new Schema({
     type:String,
     required:true,
  },
- date:{
-    type:Date,
-    default: Date.now
-
+ isAdmin: {
+   type: Boolean,
+   default: false,
+ },
+ dailyGoal: {
+   type: Number,
+   default: 5,
+ },
+ currentStreak: {
+   type: Number,
+   default: 0,
+ },
+ longestStreak: {
+   type: Number,
+   default: 0,
+ },
+ lastGoal: {
+   type: Date,
+   default: null,
  }
 });
 

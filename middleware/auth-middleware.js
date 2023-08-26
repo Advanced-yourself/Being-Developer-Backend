@@ -23,8 +23,6 @@ const checkUserAuth= async(req,res,next)=> {
   
         req.user = await userModel.findById(UserID).select("-password");
   
-        console.log(req.user);
-  
         next();
       } catch (error) {
         console.log(error);

@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const { body, validationResult } = require("express-validator");
-const { Schema } = mongoose;
-const Notes = require("../models/Notes");
-const fetchuser = require("../middleware/fetchuser");
 const checkUserAuth = require("../middleware/auth-middleware");
 const {
   addNotes,
