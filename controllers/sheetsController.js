@@ -30,6 +30,25 @@ const addSheets = async (req, res) => {
   }
 };
 
+const addMultipleSheets = async (req, res, next) => {
+  const { sheets } = req.body;
+  try {
+    // Insert all sheets into the database in a single operation
+    const createdSheets = await SheetModel.insertMany(sheets);
+
+    // You can perform additional operations here if needed
+
+    res.status(201).json({
+      createdSheets: createdSheets,
+      message: "Sheets created successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
+
 const fetchSheets = async (req, res) => {
   try {
     // console.log(req.query);
@@ -89,4 +108,4 @@ const deleteSheet = async (req, res) => {
 };
 
 
-module.exports = { addSheets, fetchSheets, deleteSheet };
+module.exports = { addSheets,addMultipleSheets,fetchSheets, deleteSheet };

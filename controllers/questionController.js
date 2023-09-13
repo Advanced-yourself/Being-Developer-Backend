@@ -33,7 +33,7 @@ exports.createQuestion = async (req, res, next) => {
 
 
 exports.createMultipleQuestions = async (req, res, next) => {
-    const { questions } = req.body;
+    const { questions} = req.body;
     try {
       // console.log(questions);
       const createdQuestions = await QuestionModel.insertMany(questions);
@@ -46,6 +46,7 @@ exports.createMultipleQuestions = async (req, res, next) => {
         createdQuestions: createdQuestions,
         message: "Questions created successfully",
       });
+      
     } catch (err) {
       console.log(err);
       // return next(new HttpError("Something went wrong", 500));

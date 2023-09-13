@@ -22,6 +22,25 @@ exports.createTopic = async (req, res, next) => {
     }
   };
 
+  exports.addMultipleTopics = async (req, res, next) => {
+    const { topics } = req.body;
+    try {
+      // Insert all topics into the database in a single operation
+      const createdTopics = await TopicModel.insertMany(topics);
+  
+      // You can perform additional operations here if needed
+  
+      res.status(201).json({
+        createdTopics: createdTopics,
+        message: "Topics created successfully",
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Something went wrong" });
+    }
+  };
+  
+
 
 exports.getTopics = async (req, res, next) => {
     const sheetId = req.params.sheetId;
