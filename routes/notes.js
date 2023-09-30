@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const checkUserAuth = require("../middleware/auth-middleware");
 const {
+  createNote,
   addNotes,
   fetchNotes,
   updateNotes,
@@ -12,6 +13,8 @@ const {
 // Route 1: Get All the notess saved by the user "/api/fetchnotes" (Login Required)
 
 router.post("/addnotes", checkUserAuth, addNotes);
+
+router.post("/createnote", checkUserAuth, createNote);
 
 router.get("/fetchnotes", checkUserAuth, fetchNotes);
 

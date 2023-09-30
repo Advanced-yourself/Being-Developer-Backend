@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
           const token = jwt.sign(
             { userID: saved_user.id },
             process.env.JWT_SECRET,
-            { expiresIn: "5d" }
+            { expiresIn: "60d" }
           );
 
           res.send({
@@ -90,7 +90,7 @@ const loginUser = async (req, res) => {
         if (email === user.email && isMatch) {
           //Generatejwt token
           const token = jwt.sign({ UserID: user.id }, process.env.JWT_SECRET, {
-            expiresIn: "5d",
+            expiresIn: "60d",
           });
           res.send({
             status: "success",

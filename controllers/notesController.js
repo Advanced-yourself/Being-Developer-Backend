@@ -3,6 +3,37 @@ const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
 const NotesModel = require("../models/Notes");
 
+const createNote = async (req, res, next) => {
+  const { questionId, content, topicId, userId } = req.body;
+  try {
+    const exists = await NotesModel.findOne({
+      questionId,
+      topicId,
+      userId,
+    });
+    if (exists) {
+      await NotesModel.updateOne(exists, { content });
+      return res.status(200).json({
+        message: "Note Updated successfully",
+      });
+    }
+    const note = new NotesModel({
+      questionId,
+      content,
+      topicId,
+      userId,
+    });
+    await note.save();
+    res.status(201).json({
+      message: "Note created successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+};
+
+
 const addNotes = async (req, res) => {
   try {
     const { title, description, tag } = req.body;
@@ -73,29 +104,24 @@ const updateNotes = async (req, res) => {
   }
 };
 
-
-
-const deleteNotes= async (req,res)=> {
-  
-    try {
-      let note = await NotesModel.findById(req.params.id);
-      if (!note) {
-        return res.status(404).send("Not Found");
-      }
-  
-      // Allow deletion if user found
-      if (note.user.toString() !== req.user.id) {
-        return res.status(401).send("Not allowed");
-      }
-  
-      note = await NotesModel.findByIdAndDelete(req.params.id);
-      res.json({ "Success ":"Note Deleted successfully", note:note});
-    } catch (error) {
-      console.log(error.message);
-      res.sendStatus(500);
+const deleteNotes = async (req, res) => {
+  try {
+    let note = await NotesModel.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send("Not Found");
     }
-     
-}
 
+    // Allow deletion if user found
+    if (note.user.toString() !== req.user.id) {
+      return res.status(401).send("Not allowed");
+    }
 
-module.exports = {addNotes,fetchNotes,updateNotes,deleteNotes};
+    note = await NotesModel.findByIdAndDelete(req.params.id);
+    res.json({ "Success ": "Note Deleted successfully", note: note });
+  } catch (error) {
+    console.log(error.message);
+    res.sendStatus(500);
+  }
+};
+
+module.exports = {createNote, addNotes, fetchNotes, updateNotes, deleteNotes };
