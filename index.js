@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const connectDB = require("./db")
 const app = express();
 const cors = require("cors");
+const path = require("path");
 const PORT = process.env.PORT;
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/auth");
