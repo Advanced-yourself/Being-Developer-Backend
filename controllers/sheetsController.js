@@ -51,7 +51,8 @@ const addMultipleSheets = async (req, res, next) => {
 
 const fetchSheets = async (req, res) => {
   try {
-    // console.log(req.query);
+    console.log(req.query);
+    console.log("API CALLED");
     let sheets = await SheetModel.find();
     sheets = sheets?.map((sheet) => {
       return {

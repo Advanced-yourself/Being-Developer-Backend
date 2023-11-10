@@ -23,11 +23,7 @@ app.use(cors());
 
 //using middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./build")));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./", "build", "index.html"));
-});
+app.use(express.static(path.join(__dirname, "./dist")));
 
 
 app.use('/api/auth', userRouter);
@@ -36,6 +32,10 @@ app.use("/api/sheets", sheetsRouter);
 app.use("/api/topics", topicRouter);
 app.use('/api/questions', questionRouter);
 
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./", "dist", "index.html"));
+});
 
 app.listen(PORT, 
   async () =>{ await connectDB()
