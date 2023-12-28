@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const signupSchema = require("../validators/auth-validator");
+const validate = require("../middleware/validate-middleware");
 const checkUserAuth = require("../middleware/auth-middleware");
 const {
   registerUser,
@@ -9,7 +11,8 @@ const {
 
 // Route 1
 // CREATING A USER using :POST "/api/auth/registerUser". No login required
-router.post("/registeruser", registerUser);
+// router.post("/registeruser", registerUser);
+router.post("/registeruser", validate(signupSchema), registerUser);
 // Route 2
 //AUTHENTICATION OF A USER
 router.post("/login", loginUser);

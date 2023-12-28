@@ -20,26 +20,10 @@ const userSchema = new Schema({
  isAdmin: {
    type: Boolean,
    default: false,
- },
- dailyGoal: {
-   type: Number,
-   default: 5,
- },
- currentStreak: {
-   type: Number,
-   default: 0,
- },
- longestStreak: {
-   type: Number,
-   default: 0,
- },
- lastGoal: {
-   type: Date,
-   default: null,
  }
 });
 
-module.exports = mongoose.model('User',userSchema);
+module.exports = new mongoose.model('User',userSchema);
 
 
 
