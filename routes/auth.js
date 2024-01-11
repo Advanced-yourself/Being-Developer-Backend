@@ -12,7 +12,7 @@ const {
 // Route 1
 // CREATING A USER using :POST "/api/auth/registerUser". No login required
 // router.post("/registeruser", registerUser);
-router.post("/registeruser", validate(signupSchema), registerUser);
+router.post("/registeruser", registerUser);
 // Route 2
 //AUTHENTICATION OF A USER
 router.post("/login", loginUser);
