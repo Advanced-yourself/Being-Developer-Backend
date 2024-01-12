@@ -14,7 +14,7 @@ const notesRouter = require("./routes/notes");
 const sheetsRouter = require("./routes/sheets");
 const topicRouter = require("./routes/topics");
 const questionRouter = require("./routes/question");
-const errorMiddleware = require('./middleware/error-middleware');
+
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
@@ -32,7 +32,7 @@ app.use('/api/notes', notesRouter);
 app.use("/api/sheets", sheetsRouter);
 app.use("/api/topics", topicRouter);
 app.use('/api/questions', questionRouter);
-app.use(errorMiddleware);
+
 
 
 app.get("/*", (req, res) => {

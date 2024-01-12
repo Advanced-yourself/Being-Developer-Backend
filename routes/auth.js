@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const signupSchema = require("../validators/auth-validator");
-const validate = require("../middleware/validate-middleware");
 const checkUserAuth = require("../middleware/auth-middleware");
 const {
   registerUser,
