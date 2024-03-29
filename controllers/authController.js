@@ -6,9 +6,11 @@ const jwt = require("jsonwebtoken");
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, password_confirmation } = req.body;
+    // console.log(req.body);
 
     // Check if all required fields are provided
     if (!name || !email || !password || !password_confirmation) {
+    
       return res
         .status(400)
         .json({ status: "failed", message: "All fields are required" });
@@ -85,7 +87,6 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  console.log("Login clicked");
   try {
     const { email, password } = req.body;
 
