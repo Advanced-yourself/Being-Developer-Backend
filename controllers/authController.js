@@ -103,9 +103,7 @@ const loginUser = async (req, res) => {
     // Check if the user exists and compare passwords
     if (user && (await bcrypt.compare(password, user.password))) {
       // Generate JWT token
-      const token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET, {
-        expiresIn: "60d",
-      });
+      const token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
 
       return res.json({
         status: "success",
